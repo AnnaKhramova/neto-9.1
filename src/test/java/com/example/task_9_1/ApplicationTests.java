@@ -24,10 +24,14 @@ class ApplicationTests {
             .withExposedPorts(8081);
 
     @Test
-    void contextLoads() {
+    void devTest() {
         ResponseEntity<String> forEntityFromDev = restTemplate.getForEntity("http://localhost:" + devApp.getMappedPort(8080) + "/profile", String.class);
-        ResponseEntity<String> forEntityFromProd = restTemplate.getForEntity("http://localhost:" + prodApp.getMappedPort(8081) + "/profile", String.class);
         System.out.println(forEntityFromDev.getBody());
+    }
+
+    @Test
+    void prodTest() {
+        ResponseEntity<String> forEntityFromProd = restTemplate.getForEntity("http://localhost:" + prodApp.getMappedPort(8081) + "/profile", String.class);
         System.out.println(forEntityFromProd.getBody());
     }
 
